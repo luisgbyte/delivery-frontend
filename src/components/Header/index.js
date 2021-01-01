@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import logo from '~/assets/hamburguer.svg';
+import Notifications from '~/components/Notifications';
 
+import logo from '~/assets/hamburguer.svg';
 import { Container, Content, Profile } from './styles';
 
 function Header() {
@@ -15,9 +16,10 @@ function Header() {
                 </nav>
 
                 <aside>
+                    <Notifications />
                     <Profile>
                         <div>
-                            <strong>Luis Gustavo</strong>
+                            <strong>Admin</strong>
                             <Link to="/profile">Meu perfil</Link>
                         </div>
                         <img
