@@ -22,10 +22,10 @@ function Header() {
                             <strong>Admin</strong>
                             <Link to="/profile">Meu perfil</Link>
                         </div>
-                        <img
+                        {/* <img
                             src="https://avatars.dicebear.com/4.5/api/bottts/.svg?h=60&colors[]=red&colors[]=lime"
                             alt="avatar"
-                        />
+                        /> */}
                     </Profile>
                 </aside>
             </Content>
