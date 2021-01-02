@@ -12,7 +12,7 @@ function Header() {
             <Content>
                 <nav>
                     <img src={logo} alt="Delivery" height="60px" />
-                    <Link to="/dashboard">DASHBOARD</Link>
+                    <Link to="/dashboard">Dashboard</Link>
                 </nav>
 
                 <aside>

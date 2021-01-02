@@ -3,6 +3,8 @@ import { MdNotifications } from 'react-icons/md';
 import { parseISO, formatDistance } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
+import { useSelector } from 'react-redux';
+
 import api from '~/services/api';
 
 import {
@@ -14,6 +16,8 @@ import {
 } from './styles';
 
 function Notifications() {
+    const token = useSelector((state) => state.auth.token);
+
     const [visible, setVisible] = useState(false);
     const [notifications, setNotifications] = useState([]);
 
@@ -26,7 +30,11 @@ function Notifications() {
 
     useEffect(() => {
         async function loadNotifications() {
-            const response = await api.get('notifications');
+            const response = await api.get('notifications', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
 
             const data = response.data.map((notification) => ({
                 ...notification,
