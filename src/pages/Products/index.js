@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
+import { toast } from 'react-toastify';
 import api from '~/services/api';
-
 import { ProductsContainer } from './styles';
-import Product from '~/components/Product';
+import CardProduct from '~/components/CardProduct';
 
 function Products() {
     const [products, setProducts] = useState('');
@@ -18,14 +18,26 @@ function Products() {
         loadProducts();
     }, []);
 
+    async function handleDelete(id) {
+        try {
+            await api.delete(`products/${id}`);
+
+            setProducts(products.filter((product) => product.id !== id));
+
+            toast.success('Produto deletado com sucesso!');
+        } catch (err) {
+            toast.error('Ocorreu um error na deleção!');
+        }
+    }
+
     return (
         <ProductsContainer>
             {products &&
                 products.map((product) => (
-                    <Product
+                    <CardProduct
                         key={product.id}
                         product={product}
-                        // handleDelete={handleDeleteFood}
+                        handleDelete={handleDelete}
                         // handleEditFood={handleEditFood}
                     />
                 ))}

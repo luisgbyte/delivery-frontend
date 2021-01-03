@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FiEdit3, FiTrash } from 'react-icons/fi';
 import { Container } from './styles';
 
-function Product({ product }) {
+function CardProduct({ product, handleDelete }) {
     const [isAvailable, setIsAvailable] = useState(true);
 
     async function toggleAvailable() {
@@ -15,12 +15,10 @@ function Product({ product }) {
         // TODO - SET THE ID OF THE CURRENT ITEM TO THE EDITING FOOD AND OPEN MODAL
     }
 
-    function handleDelete() {}
-
     return (
         <Container available={isAvailable}>
             <header>
-                <img src={product.file} alt={product.name} />
+                <img width="100%" src="" alt={product.name} />
             </header>
             <section className="body">
                 <h2>{product.name}</h2>
@@ -69,4 +67,4 @@ function Product({ product }) {
     );
 }
 
-export default Product;
+export default CardProduct;
