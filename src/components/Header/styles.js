@@ -15,13 +15,16 @@ export const Content = styled.div`
     nav {
         display: flex;
         align-items: center;
+
         img {
             margin-right: 20px;
             padding-right: 20px;
             border-right: 1px solid #eee;
         }
+
         a {
             font-weight: bold;
+            margin-right: 20px;
             color: #c72828;
         }
     }
