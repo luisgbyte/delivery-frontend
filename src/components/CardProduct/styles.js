@@ -45,7 +45,7 @@ export const Container = styled.div`
             color: #39b100;
 
             b {
-                font-weight: 300;
+                font-weight: 500;
             }
         }
     }

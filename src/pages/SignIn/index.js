@@ -5,7 +5,7 @@ import { Form, Input } from '@rocketseat/unform';
 
 import { signInRequest } from '~/store/modules/auth/actions';
 
-import logo from '~/assets/hamburguer.svg';
+import logo from '~/assets/hamburguer3.svg';
 
 const schema = Yup.object().shape({
     email: Yup.string()

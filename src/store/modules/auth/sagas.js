@@ -15,8 +15,6 @@ export function* signIn({ payload }) {
             password,
         });
 
-        console.tron.log(email, password);
-
         const { token, user } = response.data;
         yield put(signInSuccess(token, user));
 
@@ -30,7 +28,6 @@ export function* signIn({ payload }) {
 }
 
 export function setToken({ payload }) {
-    console.tron.log('iniciou');
     if (!payload) return;
 
     const { token } = payload.auth;

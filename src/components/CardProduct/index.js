@@ -3,22 +3,21 @@ import React, { useState } from 'react';
 import { FiEdit3, FiTrash } from 'react-icons/fi';
 import { Container } from './styles';
 
-function CardProduct({ product, handleDelete }) {
+function CardProduct({ product, handleDelete, handleEdit }) {
     const [isAvailable, setIsAvailable] = useState(true);
 
     async function toggleAvailable() {
-        // TODO UPDATE STATUS (available)
-        setIsAvailable(false);
-    }
-
-    function setEditingFood() {
-        // TODO - SET THE ID OF THE CURRENT ITEM TO THE EDITING FOOD AND OPEN MODAL
+        setIsAvailable(!isAvailable);
     }
 
     return (
         <Container available={isAvailable}>
             <header>
-                <img width="100%" src="" alt={product.name} />
+                <img
+                    width="100%"
+                    src={product.file ? product.file.url : null}
+                    alt={product.name}
+                />
             </header>
             <section className="body">
                 <h2>{product.name}</h2>
@@ -32,7 +31,7 @@ function CardProduct({ product, handleDelete }) {
                     <button
                         type="button"
                         className="icon"
-                        onClick={() => setEditingFood()}
+                        onClick={() => handleEdit(product)}
                     >
                         <FiEdit3 size={20} />
                     </button>

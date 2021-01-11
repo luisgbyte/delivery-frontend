@@ -1,16 +1,22 @@
 import styled from 'styled-components';
+import { Form as Unform } from '@unform/web';
 
-export const Content = styled.div`
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-`;
-
-export const ButtonContainer = styled.div`
-    padding: 25px 0;
+export const Form = styled(Unform)`
+    padding: 48px 40px;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    flex-direction: column;
+
+    h1 {
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 36px;
+        margin-bottom: 40px;
+    }
+
+    button {
+        margin-top: 48px;
+        align-self: flex-end;
+    }
 
     button {
         font-weight: 600;
@@ -24,24 +30,15 @@ export const ButtonContainer = styled.div`
         align-items: center;
 
         .text {
-            padding: 8px 12px;
+            padding: 16px 24px;
         }
 
         .icon {
             display: flex;
-            padding: 10px 10px;
+            padding: 16px 16px;
             background: #41c900;
             border-radius: 0 8px 8px 0;
             margin: 0 auto;
         }
     }
-`;
-
-export const ProductsContainer = styled.div`
-    padding: 5px 0;
-
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 32px;
 `;

@@ -1,47 +1,70 @@
 import React, { useEffect, useState } from 'react';
 
-import { toast } from 'react-toastify';
-import api from '~/services/api';
-import { ProductsContainer } from './styles';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { FiPlusSquare } from 'react-icons/fi';
+import { Content, ProductsContainer, ButtonContainer } from './styles';
+
 import CardProduct from '~/components/CardProduct';
+import ModalEdit from '~/components/ModalEdit';
+import ModalAdd from '~/components/ModalAdd';
+
+import { productRequest, productDelete } from '~/store/modules/product/actions';
+import { toggleModalEdit, toggleModalAdd } from '~/store/modules/modal/actions';
 
 function Products() {
-    const [products, setProducts] = useState('');
+    const [editingProduct, setEditingProduct] = useState({});
+
+    const dispatch = useDispatch();
+
+    const { products } = useSelector((state) => state.product);
+    const { editModalOpen, addModalOpen } = useSelector((state) => state.modal);
 
     useEffect(() => {
-        async function loadProducts() {
-            const { data } = await api.get('products');
-
-            setProducts(data);
-        }
-
-        loadProducts();
+        dispatch(productRequest());
     }, []);
 
-    async function handleDelete(id) {
-        try {
-            await api.delete(`products/${id}`);
+    function handleEdit(product) {
+        dispatch(toggleModalEdit());
+        setEditingProduct(product);
+    }
 
-            setProducts(products.filter((product) => product.id !== id));
-
-            toast.success('Produto deletado com sucesso!');
-        } catch (err) {
-            toast.error('Ocorreu um error na deleção!');
-        }
+    function handleDelete(id) {
+        dispatch(productDelete(id));
     }
 
     return (
-        <ProductsContainer>
-            {products &&
-                products.map((product) => (
-                    <CardProduct
-                        key={product.id}
-                        product={product}
-                        handleDelete={handleDelete}
-                        // handleEditFood={handleEditFood}
-                    />
-                ))}
-        </ProductsContainer>
+        <>
+            <ModalAdd isOpen={addModalOpen} />
+            <ModalEdit isOpen={editModalOpen} editingProduct={editingProduct} />
+
+            <Content>
+                <ButtonContainer>
+                    <button
+                        type="button"
+                        onClick={() => {
+                            dispatch(toggleModalAdd());
+                        }}
+                    >
+                        <div className="text">Novo Produto</div>
+                        <div className="icon">
+                            <FiPlusSquare size={24} />
+                        </div>
+                    </button>
+                </ButtonContainer>
+                <ProductsContainer>
+                    {products &&
+                        products.map((product) => (
+                            <CardProduct
+                                key={product.id}
+                                product={product}
+                                handleDelete={handleDelete}
+                                handleEdit={handleEdit}
+                            />
+                        ))}
+                </ProductsContainer>
+            </Content>
+        </>
     );
 }
 

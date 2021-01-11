@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 import Notifications from '~/components/Notifications';
 
-import logo from '~/assets/hamburguer.svg';
+import logo from '~/assets/hamburguer3.svg';
 import { Container, Content, Profile } from './styles';
 
 function Header() {
     const profile = useSelector((state) => state.user.profile);
-    console.tron.log(profile);
+
     return (
         <Container>
             <Content>
