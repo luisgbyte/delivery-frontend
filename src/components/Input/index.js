@@ -10,7 +10,7 @@ function Input({ name, icon: Icon, ...rest }) {
     const [isFocused, setIsFocused] = useState(false);
     const [isFilled, setIsFilled] = useState(false);
 
-    const { fieldName, defaultValue, registerField } = useField(name);
+    const { fieldName, defaultValue, registerField, error } = useField(name);
 
     const handleInputFocus = useCallback(() => {
         setIsFocused(true);
@@ -29,18 +29,32 @@ function Input({ name, icon: Icon, ...rest }) {
             path: 'value',
         });
     }, [fieldName, registerField]);
-    return (
-        <Container isFilled={isFilled} isFocused={isFocused}>
-            {Icon && <Icon size={20} />}
 
-            <input
-                onFocus={handleInputFocus}
-                onBlur={handleInputBlur}
-                defaultValue={defaultValue}
-                ref={inputRef}
-                {...rest}
-            />
-        </Container>
+    return (
+        <>
+            <Container isFilled={isFilled} isFocused={isFocused}>
+                {Icon && <Icon size={20} />}
+                <input
+                    onFocus={handleInputFocus}
+                    onBlur={handleInputBlur}
+                    defaultValue={defaultValue}
+                    ref={inputRef}
+                    {...rest}
+                />
+            </Container>
+            {error && (
+                <p
+                    style={{
+                        color: '#F1040C',
+                        fontSize: '15px',
+                        fontFamily: 'Roboto',
+                        padding: '5px',
+                    }}
+                >
+                    {error}
+                </p>
+            )}
+        </>
     );
 }
 

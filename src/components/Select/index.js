@@ -7,9 +7,7 @@ import { Container } from './styles';
 
 const Select = ({ name, ...rest }) => {
     const selectRef = useRef(null);
-    const { fieldName, defaultValue, registerField /* , error */ } = useField(
-        name
-    );
+    const { fieldName, defaultValue, registerField, error } = useField(name);
 
     useEffect(() => {
         registerField({
@@ -57,15 +55,29 @@ const Select = ({ name, ...rest }) => {
         }),
     };
     return (
-        <Container>
-            <ReactSelect
-                styles={customStyles}
-                defaultValue={defaultValue}
-                ref={selectRef}
-                classNamePrefix="react-select"
-                {...rest}
-            />
-        </Container>
+        <>
+            <Container>
+                <ReactSelect
+                    styles={customStyles}
+                    defaultValue={defaultValue}
+                    ref={selectRef}
+                    classNamePrefix="react-select"
+                    {...rest}
+                />
+            </Container>
+            {error && (
+                <p
+                    style={{
+                        color: '#F1040C',
+                        fontSize: '15px',
+                        fontFamily: 'Roboto',
+                        padding: '5px',
+                    }}
+                >
+                    {error}
+                </p>
+            )}
+        </>
     );
 };
 

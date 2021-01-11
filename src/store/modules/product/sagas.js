@@ -24,27 +24,26 @@ export function* requestProducts() {
     }
 }
 
-export function* deleteProduct({ payload }) {
-    try {
-        const { id } = payload;
-        yield call(api.delete, `products/${id}`);
-
-        yield put(productDeleteSuccess(id));
-        toast.success('Produto deletado com sucesso!');
-    } catch (err) {
-        toast.error('Ocorreu um error ao deletar produto!');
-    }
-}
-
 export function* addProduct({ payload }) {
     try {
         const { data } = payload;
 
-        const uploadImage = yield call(api.post, 'files', data.file);
-        console.tron.log('upload concluido...');
+        // Creating package to send image
+        const dataImage = new FormData();
 
+        if (data.file) {
+            dataImage.append('file', data.file);
+        } else {
+            throw new Error('Object undefined');
+        }
+
+        // Sending product image
+        const uploadImage = yield call(api.post, 'files', dataImage);
+
+        // Getting id if sending worked
         data.file_id = uploadImage.data.id;
 
+        // Registering new product with existing data and image id
         const response = yield call(api.post, 'products', data);
 
         yield put(productCreateSuccess(response.data));
@@ -59,11 +58,19 @@ export function* addProduct({ payload }) {
 export function* editProduct({ payload }) {
     try {
         const { data, id } = payload;
+        // Creating package to send image
+        const dataImage = new FormData();
 
-        const uploadImage = yield call(api.post, 'files', data.file);
+        // If there is no change, the image upload is discarded
+        if (data.file) {
+            dataImage.append('file', data.file);
+
+            // Sending product image
+            const uploadImage = yield call(api.post, 'files', dataImage);
+            data.file_id = uploadImage.data.id;
+        }
+
         console.tron.log('upload concluido...');
-
-        data.file_id = uploadImage.data.id;
 
         const response = yield call(api.put, `products/${id}`, data);
 
@@ -74,6 +81,18 @@ export function* editProduct({ payload }) {
     } catch (err) {
         yield put(productFailure());
         toast.error('Ocorreu um error ao editar produto!');
+    }
+}
+
+export function* deleteProduct({ payload }) {
+    try {
+        const { id } = payload;
+        yield call(api.delete, `products/${id}`);
+
+        yield put(productDeleteSuccess(id));
+        toast.success('Produto deletado com sucesso!');
+    } catch (err) {
+        toast.error('Ocorreu um error ao deletar produto!');
     }
 }
 

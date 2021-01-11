@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { FiCheckSquare } from 'react-icons/fi';
+import * as Yup from 'yup';
 import { Form } from './styles';
 
 import Modal from '../Modal';
@@ -15,10 +16,10 @@ import { productCreate } from '~/store/modules/product/actions';
 import api from '~/services/api';
 
 function ModalAdd({ isOpen }) {
+    const formRef = useRef(null);
     const dispatch = useDispatch();
 
     const [categories, setCategories] = useState([]);
-    const [fileIdAdd, setFileIdAdd] = useState();
 
     useEffect(() => {
         async function loadCategories() {
@@ -31,16 +32,54 @@ function ModalAdd({ isOpen }) {
 
             setCategories(newObjCategorie);
         }
-        // setFileIdAdd(null);
+
         loadCategories();
     }, []);
 
-    function handleSubmit(data) {
-        data.file = fileIdAdd;
+    async function handleSubmit(data, { reset }) {
+        try {
+            const schema = Yup.object().shape({
+                name: Yup.string()
+                    .min(4, 'O campo nome deve ter no mínimo 4 caracteres.')
+                    .max(20, 'O campo nome deve ter no máximo 20 caracteres.')
+                    .required('O nome do produto é obrigatório.'),
+                price: Yup.number()
+                    .typeError('O preço deve ser numerico.')
+                    .min(1, 'O campo preço deve ter no mínimo 1 caractere.')
+                    .max(5000, 'Muito caro.')
+                    .required('O preço é obrigatório.'),
+                description: Yup.string()
+                    .required('A descrição é obrigatória.')
+                    .min(4, 'O campo descrição de ter no mínimo 4 caracteres.')
+                    .max(
+                        20,
+                        'O campo descrição deve ter no máximo 20 caracteres.'
+                    ),
+                category_id: Yup.number()
+                    .typeError('A categoria é obrigatória.')
+                    .required(),
+                file: Yup.mixed()
+                    .nullable()
+                    .required('A imagem do produto é obrigatória.'),
+            });
 
-        setFileIdAdd(null);
+            await schema.validate(data, {
+                abortEarly: false,
+            });
 
-        dispatch(productCreate(data));
+            dispatch(productCreate(data));
+            reset();
+        } catch (err) {
+            if (err instanceof Yup.ValidationError) {
+                const errorMessages = {};
+
+                err.inner.forEach((error) => {
+                    errorMessages[error.path] = error.message;
+                });
+
+                formRef.current.setErrors(errorMessages);
+            }
+        }
     }
 
     return (
@@ -51,7 +90,7 @@ function ModalAdd({ isOpen }) {
                     dispatch(toggleModalAdd());
                 }}
             >
-                <Form onSubmit={handleSubmit}>
+                <Form ref={formRef} onSubmit={handleSubmit}>
                     <h1>Novo Produto</h1>
                     <Input name="name" placeholder="Ex: Pizza Italiana" />
                     <Input name="price" placeholder="Ex: 19.90" />
@@ -61,7 +100,7 @@ function ModalAdd({ isOpen }) {
                         options={categories}
                         placeholder="Selecione..."
                     />
-                    <ImageInput setFileId={setFileIdAdd} name="file_id" />
+                    <ImageInput name="file" />
                     <button type="submit">
                         <p className="text">Adicionar Produto</p>
                         <div className="icon">

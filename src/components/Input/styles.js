@@ -26,14 +26,13 @@ export const Container = styled.div`
             color: #ff9000;
             border-color: #ff9000;
         `}
-
     ${(props) =>
         props.isFilled &&
         css`
             color: #ff9000;
         `}
 
-  input {
+        input {
         flex: 1;
         background: transparent;
         border: 0;

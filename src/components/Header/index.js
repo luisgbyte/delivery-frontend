@@ -18,6 +18,7 @@ function Header() {
 
                     <Link to="/dashboard">Dashboard</Link>
                     <Link to="/products">Produtos</Link>
+                    <Link to="/">Categorias</Link>
                 </nav>
 
                 <aside>
