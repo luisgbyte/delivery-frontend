@@ -9,6 +9,7 @@ import {
     productDeleteSuccess,
     productCreateSuccess,
     productEditSuccess,
+    productStockedSuccess,
 } from './actions';
 
 import { toggleModalEdit } from '../modal/actions';
@@ -96,7 +97,22 @@ export function* deleteProduct({ payload }) {
     }
 }
 
+export function* stockedProduct({ payload }) {
+    try {
+        const { id } = payload;
+
+        console.tron.log(id);
+        const response = yield call(api.put, `products/${id}/stock`);
+
+        yield put(productStockedSuccess(response.data));
+        toast.success('Ação concluída com sucesso!');
+    } catch (err) {
+        toast.error('Ocorreu um error ao realizar a ação!');
+    }
+}
+
 export default all([
+    takeLatest('@product/PRODUCT_STOCKED', stockedProduct),
     takeLatest('@product/PRODUCT_REQUEST', requestProducts),
     takeLatest('@product/PRODUCT_CREATE', addProduct),
     takeLatest('@product/PRODUCT_EDIT', editProduct),

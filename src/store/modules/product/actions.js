@@ -58,3 +58,17 @@ export function productEditSuccess(data) {
         payload: { data },
     };
 }
+
+export function productStocked(id) {
+    return {
+        type: '@product/PRODUCT_STOCKED',
+        payload: { id },
+    };
+}
+
+export function productStockedSuccess(data) {
+    return {
+        type: '@product/PRODUCT_STOCKED_SUCCESS',
+        payload: { data },
+    };
+}

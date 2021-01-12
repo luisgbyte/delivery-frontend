@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 
 export default function user(state = INITIAL_STATE, action) {
     switch (action.type) {
-        case '@product/PRODUCT_SUCCESS':
+        case '@product/PRODUCT_SUCCESS': // Request
             return produce(state, (draft) => {
                 draft.products = action.payload.products;
                 draft.loading = false;
@@ -50,6 +50,17 @@ export default function user(state = INITIAL_STATE, action) {
                 draft.products = state.products.filter(
                     (product) => product.id !== action.payload.id
                 );
+            });
+
+        case '@product/PRODUCT_STOCKED_SUCCESS':
+            return produce(state, (draft) => {
+                const { id, stocked } = action.payload.data;
+
+                const index = draft.products.findIndex(
+                    (item) => item.id === id
+                );
+
+                draft.products[index].stocked = stocked;
             });
 
         default:

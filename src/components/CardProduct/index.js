@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
-
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { FiEdit3, FiTrash } from 'react-icons/fi';
 import { Container } from './styles';
 
-function CardProduct({ product, handleDelete, handleEdit }) {
-    const [isAvailable, setIsAvailable] = useState(true);
+import { productStocked } from '~/store/modules/product/actions';
 
-    async function toggleAvailable() {
-        setIsAvailable(!isAvailable);
+function CardProduct({ product, handleDelete, handleEdit }) {
+    const dispatch = useDispatch();
+
+    async function toggleAvailable(id) {
+        dispatch(productStocked(id));
     }
+
+    const isAvailable = product.stocked;
 
     return (
         <Container available={isAvailable}>
@@ -56,7 +60,7 @@ function CardProduct({ product, handleDelete, handleEdit }) {
                             id={`available-switch-${product.id}`}
                             type="checkbox"
                             checked={isAvailable}
-                            onChange={toggleAvailable}
+                            onChange={() => toggleAvailable(product.id)}
                         />
                         <span className="slider" />
                     </label>
