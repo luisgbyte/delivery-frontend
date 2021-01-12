@@ -45,7 +45,7 @@ function ModalEdit({ isOpen, editingProduct }) {
                 price: Yup.number()
                     .typeError('O preço deve ser numerico.')
                     .min(1, 'O campo preço deve ter no mínimo 1 caractere.')
-                    .max(5000, 'Muito caro.')
+                    .max(500, 'Muito caro.')
                     .required('O preço é obrigatório.'),
                 description: Yup.string()
                     .required('A descrição é obrigatória.')

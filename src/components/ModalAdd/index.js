@@ -40,13 +40,14 @@ function ModalAdd({ isOpen }) {
         try {
             const schema = Yup.object().shape({
                 name: Yup.string()
-                    .min(4, 'O campo nome deve ter no mínimo 4 caracteres.')
+                    .min(1, 'O campo nome deve ter no mínimo 1 caracteres.')
                     .max(20, 'O campo nome deve ter no máximo 20 caracteres.')
                     .required('O nome do produto é obrigatório.'),
                 price: Yup.number()
+                    .positive()
                     .typeError('O preço deve ser numerico.')
                     .min(1, 'O campo preço deve ter no mínimo 1 caractere.')
-                    .max(5000, 'Muito caro.')
+                    .max(500, 'Muito caro.')
                     .required('O preço é obrigatório.'),
                 description: Yup.string()
                     .required('A descrição é obrigatória.')
@@ -66,7 +67,7 @@ function ModalAdd({ isOpen }) {
             await schema.validate(data, {
                 abortEarly: false,
             });
-
+            console.tron.log(data);
             dispatch(productCreate(data));
             reset();
         } catch (err) {

@@ -23,7 +23,7 @@ function CardProduct({ product, handleDelete, handleEdit }) {
                 <h2>{product.name}</h2>
                 <p>{product.description}</p>
                 <p className="price">
-                    R$ <b>{product.price}</b>
+                    R$ <b>{product.price.toString().replace('.', ',')}</b>
                 </p>
             </section>
             <section className="footer">
