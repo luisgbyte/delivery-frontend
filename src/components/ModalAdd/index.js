@@ -67,8 +67,9 @@ function ModalAdd({ isOpen }) {
             await schema.validate(data, {
                 abortEarly: false,
             });
-            console.tron.log(data);
+
             dispatch(productCreate(data));
+
             reset();
         } catch (err) {
             if (err instanceof Yup.ValidationError) {

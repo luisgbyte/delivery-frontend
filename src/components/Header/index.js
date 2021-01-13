@@ -18,7 +18,7 @@ function Header() {
 
                     <Link to="/dashboard">Dashboard</Link>
                     <Link to="/products">Produtos</Link>
-                    <Link to="/">Categorias</Link>
+                    <Link to="/category">Categorias</Link>
                 </nav>
 
                 <aside>
@@ -28,10 +28,6 @@ function Header() {
                             <strong>{profile.name}</strong>
                             <Link to="/profile">Meu perfil</Link>
                         </div>
-                        {/* <img
-                            src="https://avatars.dicebear.com/4.5/api/bottts/.svg?h=60&colors[]=red&colors[]=lime"
-                            alt="avatar"
-                        /> */}
                     </Profile>
                 </aside>
             </Content>
