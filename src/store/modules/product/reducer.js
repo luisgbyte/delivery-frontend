@@ -5,7 +5,7 @@ const INITIAL_STATE = {
     loading: false,
 };
 
-export default function user(state = INITIAL_STATE, action) {
+export default function products(state = INITIAL_STATE, action) {
     switch (action.type) {
         case '@product/PRODUCT_SUCCESS': // Request
             return produce(state, (draft) => {

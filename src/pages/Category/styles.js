@@ -23,7 +23,6 @@ export const HeadContainer = styled.div`
         border: 0;
         background: #39b100;
         color: #fff;
-        /* max-height: 45px; */
 
         display: flex;
         flex-direction: row;
@@ -68,6 +67,17 @@ export const CategoryContainer = styled.div`
     td {
         padding: 3% 6%;
         font-size: 15px;
+        min-width: 70%;
+
+        div {
+            display: flex;
+            justify-content: space-between;
+
+            button {
+                border: 0;
+                background: none;
+            }
+        }
     }
 
     tbody tr:nth-of-type(even) {
@@ -76,15 +86,5 @@ export const CategoryContainer = styled.div`
 
     tbody tr:nth-of-type(odd) {
         background-color: #c2c2c2;
-    }
-
-    td div {
-        display: flex;
-        justify-content: space-between;
-
-        button {
-            border: 0;
-            background: none;
-        }
     }
 `;
