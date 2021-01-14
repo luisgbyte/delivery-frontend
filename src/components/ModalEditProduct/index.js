@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
-
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+
 import { FiCheckSquare } from 'react-icons/fi';
 import * as Yup from 'yup';
 import { Form } from './styles';
@@ -10,12 +10,12 @@ import Input from '../Input';
 import Select from '../Select';
 import ImageInput from '../ImageInput';
 
-import { toggleModalAdd } from '~/store/modules/modal/actions';
-import { productCreate } from '~/store/modules/product/actions';
-
 import api from '~/services/api';
 
-function ModalAdd({ isOpen }) {
+import { toggleModalEdit } from '~/store/modules/modal/actions';
+import { productEdit } from '~/store/modules/product/actions';
+
+function ModalEditProduct({ isOpen, editingProduct }) {
     const formRef = useRef(null);
     const dispatch = useDispatch();
 
@@ -29,22 +29,20 @@ function ModalAdd({ isOpen }) {
                 value: categorie.id,
                 label: categorie.name,
             }));
-
             setCategories(newObjCategorie);
         }
 
         loadCategories();
-    }, []);
+    }, [isOpen]);
 
     async function handleSubmit(data, { reset }) {
         try {
             const schema = Yup.object().shape({
                 name: Yup.string()
-                    .min(1, 'O campo nome deve ter no mínimo 1 caracteres.')
+                    .min(4, 'O campo nome deve ter no mínimo 4 caracteres.')
                     .max(20, 'O campo nome deve ter no máximo 20 caracteres.')
                     .required('O nome do produto é obrigatório.'),
                 price: Yup.number()
-                    .positive()
                     .typeError('O preço deve ser numerico.')
                     .min(1, 'O campo preço deve ter no mínimo 1 caractere.')
                     .max(500, 'Muito caro.')
@@ -59,17 +57,14 @@ function ModalAdd({ isOpen }) {
                 category_id: Yup.number()
                     .typeError('A categoria é obrigatória.')
                     .required(),
-                file: Yup.mixed()
-                    .nullable()
-                    .required('A imagem do produto é obrigatória.'),
+                file: Yup.mixed().nullable(),
             });
 
             await schema.validate(data, {
                 abortEarly: false,
             });
 
-            dispatch(productCreate(data));
-
+            dispatch(productEdit(data, editingProduct.id));
             reset();
         } catch (err) {
             if (err instanceof Yup.ValidationError) {
@@ -84,35 +79,48 @@ function ModalAdd({ isOpen }) {
         }
     }
 
+    const defaultSelect = () =>
+        categories.find(
+            (category) => category.value === editingProduct.category?.id
+        );
+
     return (
-        <>
-            <Modal
-                isOpen={isOpen}
-                setIsOpen={() => {
-                    dispatch(toggleModalAdd());
-                }}
+        <Modal
+            isOpen={isOpen}
+            setIsOpen={() => {
+                dispatch(toggleModalEdit());
+            }}
+        >
+            <Form
+                ref={formRef}
+                onSubmit={handleSubmit}
+                initialData={editingProduct}
             >
-                <Form ref={formRef} onSubmit={handleSubmit}>
-                    <h1>Novo Produto</h1>
-                    <Input name="name" placeholder="Ex: Pizza Italiana" />
-                    <Input name="price" placeholder="Ex: 19.90" />
-                    <Input name="description" placeholder="Ex: Dois sabores" />
-                    <Select
-                        name="category_id"
-                        options={categories}
-                        placeholder="Selecione..."
-                    />
-                    <ImageInput name="file" />
-                    <button type="submit">
-                        <p className="text">Adicionar Produto</p>
-                        <div className="icon">
-                            <FiCheckSquare size={24} />
-                        </div>
-                    </button>
-                </Form>
-            </Modal>
-        </>
+                <h1>Editar Prato</h1>
+
+                <Input name="name" placeholder="Ex: Moda Italiana" />
+
+                <Input name="price" placeholder="Ex: 19.90" />
+
+                <Input name="description" placeholder="Descrição" />
+
+                <Select
+                    name="category_id"
+                    options={categories}
+                    defaultValue={defaultSelect()}
+                />
+
+                <ImageInput name="file" />
+
+                <button type="submit">
+                    <div className="text">Editar Prato</div>
+                    <div className="icon">
+                        <FiCheckSquare size={24} />
+                    </div>
+                </button>
+            </Form>
+        </Modal>
     );
 }
 
-export default ModalAdd;
+export default ModalEditProduct;

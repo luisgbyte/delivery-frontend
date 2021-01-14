@@ -14,7 +14,7 @@ export const Content = styled.div`
 export const HeadContainer = styled.div`
     display: flex;
     justify-content: space-between;
-
+    align-items: center;
     padding: 20px;
 
     button {
@@ -23,7 +23,7 @@ export const HeadContainer = styled.div`
         border: 0;
         background: #39b100;
         color: #fff;
-        max-height: 45px;
+        /* max-height: 45px; */
 
         display: flex;
         flex-direction: row;
@@ -66,7 +66,7 @@ export const CategoryContainer = styled.div`
     }
 
     td {
-        padding: 3% 8%;
+        padding: 3% 6%;
         font-size: 15px;
     }
 
@@ -80,7 +80,7 @@ export const CategoryContainer = styled.div`
 
     td div {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
 
         button {
             border: 0;

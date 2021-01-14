@@ -101,7 +101,6 @@ export function* stockedProduct({ payload }) {
     try {
         const { id } = payload;
 
-        console.tron.log(id);
         const response = yield call(api.put, `products/${id}/stock`);
 
         yield put(productStockedSuccess(response.data));

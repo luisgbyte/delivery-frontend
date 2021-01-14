@@ -6,8 +6,8 @@ import { FiPlusSquare } from 'react-icons/fi';
 import { Content, ProductsContainer, ButtonContainer } from './styles';
 
 import CardProduct from '~/components/CardProduct';
-import ModalEdit from '~/components/ModalEdit';
-import ModalAdd from '~/components/ModalAdd';
+import ModalEditProduct from '~/components/ModalEditProduct';
+import ModalAddProduct from '~/components/ModalAddProduct';
 
 import { productRequest, productDelete } from '~/store/modules/product/actions';
 import { toggleModalEdit, toggleModalAdd } from '~/store/modules/modal/actions';
@@ -21,7 +21,9 @@ function Products() {
     const { editModalOpen, addModalOpen } = useSelector((state) => state.modal);
 
     useEffect(() => {
-        dispatch(productRequest());
+        if (!products) {
+            dispatch(productRequest());
+        }
     }, []);
 
     function handleEdit(product) {
@@ -35,8 +37,11 @@ function Products() {
 
     return (
         <>
-            <ModalAdd isOpen={addModalOpen} />
-            <ModalEdit isOpen={editModalOpen} editingProduct={editingProduct} />
+            <ModalAddProduct isOpen={addModalOpen} />
+            <ModalEditProduct
+                isOpen={editModalOpen}
+                editingProduct={editingProduct}
+            />
 
             <Content>
                 <ButtonContainer>
