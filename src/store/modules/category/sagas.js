@@ -10,9 +10,11 @@ import {
     categoryDeleteFailure,
     categoryCreateSuccess,
     categoryCreateFailure,
+    categoryEditSuccess,
+    categoryEditFailure,
 } from './actions';
 
-import { toggleModalAdd } from '../modal/actions';
+import { toggleModalAdd, toggleModalEdit } from '../modal/actions';
 
 export function* categoriesRequest() {
     try {
@@ -47,15 +49,30 @@ export function* categoriesDelete({ payload }) {
         yield call(api.delete, `categories/${id}`);
 
         yield put(categoryDeleteSuccess(id));
-        toast.success('Categoria deletado com sucesso!');
+        toast.success('Categoria deletada com sucesso!');
     } catch (err) {
         yield put(categoryDeleteFailure());
-        toast.error('Ocorreu um error ao deletar a categoria!');
+        toast.error('Error ao deletar categoria!');
+    }
+}
+
+export function* categoriesEdit({ payload }) {
+    try {
+        const { data, id } = payload;
+        const response = yield call(api.put, `categories/${id}`, data);
+
+        yield put(categoryEditSuccess(response.data));
+        yield put(toggleModalEdit());
+        toast.success('Categoria editada com sucesso!');
+    } catch (err) {
+        yield put(categoryEditFailure());
+        toast.error('Erro ao editar categoria!');
     }
 }
 
 export default all([
     takeLatest('@category/CATEGORY_DELETE', categoriesDelete),
+    takeLatest('@category/CATEGORY_EDIT', categoriesEdit),
     takeLatest('@category/CATEGORY_CREATE', categoriesCreate),
     takeLatest('@category/CATEGORY_REQUEST', categoriesRequest),
 ]);

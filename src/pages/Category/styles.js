@@ -65,7 +65,7 @@ export const CategoryContainer = styled.div`
     }
 
     td {
-        padding: 3% 6%;
+        padding: 3% 7%;
         font-size: 15px;
         min-width: 70%;
 

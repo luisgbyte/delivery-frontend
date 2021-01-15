@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -6,17 +6,19 @@ import { FiPlusSquare, FiEdit, FiTrash2 } from 'react-icons/fi';
 import { Content, HeadContainer, CategoryContainer } from './styles';
 
 import ModalAddCategory from '~/components/ModalAddCategory';
+import ModalEditCategory from '~/components/ModalEditCategory';
 
 import {
     categoryRequest,
-    categoryEdit,
     categoryDelete,
 } from '~/store/modules/category/actions';
 
-import { toggleModalAdd } from '~/store/modules/modal/actions';
+import { toggleModalEdit, toggleModalAdd } from '~/store/modules/modal/actions';
 
 function Category() {
-    const { addModalOpen } = useSelector((state) => state.modal);
+    const [editingProduct, setEditingProduct] = useState({});
+
+    const { addModalOpen, editModalOpen } = useSelector((state) => state.modal);
     const { categories } = useSelector((state) => state.category);
 
     const dispatch = useDispatch();
@@ -27,9 +29,20 @@ function Category() {
         }
     }, []);
 
+    function handleEdit(category) {
+        dispatch(toggleModalEdit());
+        console.tron.log('handleSubmit', editingProduct);
+        setEditingProduct(category);
+    }
+
     return (
         <>
             <ModalAddCategory isOpen={addModalOpen} />
+            <ModalEditCategory
+                isOpen={editModalOpen}
+                editingProduct={editingProduct}
+            />
+
             <Content>
                 <HeadContainer>
                     <h2>Categorias</h2>
@@ -60,11 +73,7 @@ function Category() {
                                                 <button
                                                     type="button"
                                                     onClick={() => {
-                                                        dispatch(
-                                                            categoryEdit(
-                                                                category.id
-                                                            )
-                                                        );
+                                                        handleEdit(category);
                                                     }}
                                                 >
                                                     <FiEdit size={18} />

@@ -57,17 +57,17 @@ export function categoryCreateFailure() {
     };
 }
 
-export function categoryEdit(id) {
+export function categoryEdit(data, id) {
     return {
         type: '@category/CATEGORY_EDIT',
-        payload: { id },
+        payload: { data, id },
     };
 }
 
-export function categoryEditSuccess(category) {
+export function categoryEditSuccess(data) {
     return {
         type: '@category/CATEGORY_EDIT_SUCCESS',
-        payload: { category },
+        payload: { data },
     };
 }
 
