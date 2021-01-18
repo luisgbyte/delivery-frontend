@@ -31,7 +31,6 @@ function Category() {
 
     function handleEdit(category) {
         dispatch(toggleModalEdit());
-        console.tron.log('handleSubmit', editingProduct);
         setEditingProduct(category);
     }
 

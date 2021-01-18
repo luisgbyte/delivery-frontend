@@ -71,8 +71,6 @@ export function* editProduct({ payload }) {
             data.file_id = uploadImage.data.id;
         }
 
-        console.tron.log('upload concluido...');
-
         const response = yield call(api.put, `products/${id}`, data);
 
         yield put(productEditSuccess(response.data));
