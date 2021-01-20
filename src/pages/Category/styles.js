@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Content = styled.div`
-    width: 600px;
+    width: 700px;
     min-height: 400px;
     margin: 0 auto;
 
@@ -13,9 +13,9 @@ export const Content = styled.div`
 
 export const HeadContainer = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
 
     button {
         font-weight: 600;
@@ -43,7 +43,7 @@ export const HeadContainer = styled.div`
 `;
 
 export const CategoryContainer = styled.div`
-    max-height: 250px;
+    max-height: 300px;
     overflow: auto;
 
     table {
@@ -87,4 +87,16 @@ export const CategoryContainer = styled.div`
     tbody tr:nth-of-type(odd) {
         background-color: #c2c2c2;
     }
+`;
+
+export const NoCategory = styled.div`
+    width: 600px;
+    height: 140px;
+    color: black;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 `;

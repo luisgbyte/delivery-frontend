@@ -3,7 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { FiPlusSquare, FiEdit, FiTrash2 } from 'react-icons/fi';
-import { Content, HeadContainer, CategoryContainer } from './styles';
+import {
+    Content,
+    NoCategory,
+    HeadContainer,
+    CategoryContainer,
+} from './styles';
 
 import ModalAddCategory from '~/components/ModalAddCategory';
 import ModalEditCategory from '~/components/ModalEditCategory';
@@ -41,10 +46,9 @@ function Category() {
                 isOpen={editModalOpen}
                 editingProduct={editingProduct}
             />
-
             <Content>
                 <HeadContainer>
-                    <h2>Categorias</h2>
+                    {/* <h3></h3> */}
                     <button
                         type="button"
                         onClick={() => {
@@ -58,43 +62,51 @@ function Category() {
                     </button>
                 </HeadContainer>
                 <CategoryContainer>
-                    <table>
-                        <thead>
-                            <tr />
-                        </thead>
-                        <tbody>
-                            {categories &&
-                                categories.map((category) => (
-                                    <tr>
-                                        <td>{category.name}</td>
-                                        <td>
-                                            <div>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => {
-                                                        handleEdit(category);
-                                                    }}
-                                                >
-                                                    <FiEdit size={18} />
-                                                </button>
-                                                <button type="button">
-                                                    <FiTrash2
-                                                        size={18}
+                    {categories?.length === 0 ? (
+                        <NoCategory>
+                            <h1>Não existem categorias cadastradas.</h1>
+                        </NoCategory>
+                    ) : (
+                        <table>
+                            <thead>
+                                <tr />
+                            </thead>
+                            <tbody>
+                                {categories &&
+                                    categories.map((category) => (
+                                        <tr key={category.id}>
+                                            <td>{category.name}</td>
+                                            <td>
+                                                <div>
+                                                    <button
+                                                        type="button"
                                                         onClick={() => {
-                                                            dispatch(
-                                                                categoryDelete(
-                                                                    category.id
-                                                                )
+                                                            handleEdit(
+                                                                category
                                                             );
                                                         }}
-                                                    />
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                        </tbody>
-                    </table>
+                                                    >
+                                                        <FiEdit size={18} />
+                                                    </button>
+                                                    <button type="button">
+                                                        <FiTrash2
+                                                            size={18}
+                                                            onClick={() => {
+                                                                dispatch(
+                                                                    categoryDelete(
+                                                                        category.id
+                                                                    )
+                                                                );
+                                                            }}
+                                                        />
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                            </tbody>
+                        </table>
+                    )}
                 </CategoryContainer>
             </Content>
         </>

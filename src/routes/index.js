@@ -6,7 +6,7 @@ import SignIn from '~/pages/SignIn';
 
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
-import Products from '~/pages/Products';
+import Product from '~/pages/Product';
 import Category from '~/pages/Category';
 
 export default function Routes() {
@@ -15,7 +15,7 @@ export default function Routes() {
             <Route path="/" exact component={SignIn} />
 
             <Route path="/dashboard" component={Dashboard} isPrivate />
-            <Route path="/products" component={Products} isPrivate />
+            <Route path="/product" component={Product} isPrivate />
             <Route path="/category" component={Category} isPrivate />
             <Route path="/profile" component={Profile} isPrivate />
             <Route path="" exact component={() => <h1>Error 404</h1>} />

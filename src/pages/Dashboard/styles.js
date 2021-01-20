@@ -32,14 +32,6 @@ export const HeaderBox = styled.div`
     flex-direction: row;
     justify-content: space-between;
     padding-bottom: 10px;
-    p {
-        font-size: 15px;
-    }
-    p:nth-child(2n) {
-        color: #96949e;
-        font-size: 14px;
-        margin: 5px 0;
-    }
 `;
 
 export const OrderDetails = styled.div`
@@ -49,18 +41,26 @@ export const OrderDetails = styled.div`
     }
     p {
         font-weight: bold;
+        font-size: 15px;
+    }
+    p:nth-child(2n) {
+        color: #96949e;
+        font-size: 14px;
+        margin: 5px 0;
     }
 `;
 
 export const AdressBox = styled.div`
     flex-direction: column;
     border-left: 1px solid #d3d3d3;
-    width: 427px;
+    /* width: 427px; */
+    width: 210px;
     padding-left: 10px;
     font-weight: bold;
     p {
         font-size: 13px;
         color: #96949e;
+        margin: 5px 0;
     }
 `;
 
@@ -111,11 +111,13 @@ export const Item = styled.div`
         }
         p {
             font-size: 15px;
+            font-weight: 200;
         }
-        p:nth-child(2n) {
+        p:not(.first) {
             color: #96949e;
             font-size: 14px;
-            margin: 5px 0;
+            margin: 2px 0;
+            /* font-weight: bold; */
         }
     }
 `;
@@ -130,9 +132,9 @@ export const OrderFooter = styled.div`
 `;
 
 export const NoOrders = styled.div`
-    width: 400px;
+    width: 500px;
     height: 50px;
-    color: #96949e;
+    color: #fff;
     position: absolute;
     top: 0;
     bottom: 0;

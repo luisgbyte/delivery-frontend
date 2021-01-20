@@ -16,8 +16,8 @@ function Header() {
                 <nav>
                     <img src={logo} alt="Delivery" height="60px" />
 
-                    <Link to="/dashboard">Dashboard</Link>
-                    <Link to="/products">Produtos</Link>
+                    <Link to="/dashboard">Pedidos</Link>
+                    <Link to="/product">Produtos</Link>
                     <Link to="/category">Categorias</Link>
                 </nav>
 

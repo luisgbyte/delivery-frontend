@@ -12,7 +12,7 @@ import ModalAddProduct from '~/components/ModalAddProduct';
 import { productRequest, productDelete } from '~/store/modules/product/actions';
 import { toggleModalEdit, toggleModalAdd } from '~/store/modules/modal/actions';
 
-function Products() {
+function Product() {
     const [editingProduct, setEditingProduct] = useState({});
 
     const dispatch = useDispatch();
@@ -73,4 +73,4 @@ function Products() {
     );
 }
 
-export default Products;
+export default Product;
