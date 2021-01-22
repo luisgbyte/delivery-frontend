@@ -27,7 +27,12 @@ function CardProduct({ product, handleDelete, handleEdit }) {
                 <h2>{product.name}</h2>
                 <p>{product.description}</p>
                 <p className="price">
-                    R$ <b>{product.price.toString().replace('.', ',')}</b>
+                    <b>
+                        {product.price.toLocaleString('pt-BR', {
+                            style: 'currency',
+                            currency: 'BRL',
+                        })}
+                    </b>
                 </p>
             </section>
             <section className="footer">

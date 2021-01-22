@@ -53,7 +53,15 @@ function Dashboard() {
                                             {order.client.name}
                                         </p>
                                         <p>15/02/2020</p>
-                                        <h3>R$ {order.total}</h3>
+                                        <h3>
+                                            {order.total.toLocaleString(
+                                                'pt-BR',
+                                                {
+                                                    style: 'currency',
+                                                    currency: 'BRL',
+                                                }
+                                            )}
+                                        </h3>
                                     </OrderDetails>
                                     <AdressBox>
                                         <p>
@@ -73,8 +81,15 @@ function Dashboard() {
                                         <p>Pagamento: {order.payment.type}</p>
                                         {order.payment.chance && (
                                             <p>
-                                                Troco para: R${' '}
-                                                {order.payment.chance} reais
+                                                Troco para:{' '}
+                                                {order.payment.chance.toLocaleString(
+                                                    'pt-BR',
+                                                    {
+                                                        style: 'currency',
+                                                        currency: 'BRL',
+                                                    }
+                                                )}{' '}
+                                                reais
                                             </p>
                                         )}
                                         {order.payment.card_type && (
@@ -103,8 +118,15 @@ function Dashboard() {
                                                         {item.name}
                                                     </p>
                                                     <p>
-                                                        Preço: R$ {item.price}{' '}
-                                                        reais
+                                                        Preço:{' '}
+                                                        {item.price.toLocaleString(
+                                                            'pt-BR',
+                                                            {
+                                                                style:
+                                                                    'currency',
+                                                                currency: 'BRL',
+                                                            }
+                                                        )}{' '}
                                                     </p>
                                                     <p>
                                                         Quantidade:{' '}
