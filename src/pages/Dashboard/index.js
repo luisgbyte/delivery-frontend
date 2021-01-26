@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { FiX } from 'react-icons/fi';
 
@@ -18,17 +18,24 @@ import {
     RemoveOrder,
 } from './styles';
 
+import Pagination from '~/components/Pagination';
+
 import { orderRequest } from '~/store/modules/order/actions';
 
 function Dashboard() {
     const dispatch = useDispatch();
-    const { orders } = useSelector((state) => state.order);
+
+    const { orders, count } = useSelector((state) => state.order);
+
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
-        if (!orders) {
-            dispatch(orderRequest());
-        }
-    }, []);
+        dispatch(orderRequest(page));
+    }, [page]);
+
+    // setInterval(() => {
+    // dispatch(orderRequest());
+    // }, 180000);
 
     return (
         <Container>
@@ -146,6 +153,12 @@ function Dashboard() {
                                 </OrderFooter>
                             </OrderBox>
                         ))}
+                    <Pagination
+                        limit={3}
+                        total={count}
+                        page={page}
+                        setPage={setPage}
+                    />
                 </OrdersContainer>
             )}
         </Container>

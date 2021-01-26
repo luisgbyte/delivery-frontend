@@ -5,9 +5,13 @@ import api from '~/services/api';
 
 import { orderRequestSuccess, orderRequestFailure } from './actions';
 
-export function* requestOrders() {
+export function* requestOrders({ payload }) {
     try {
-        const response = yield call(api.get, 'tracker');
+        const { offset } = payload;
+
+        const response = yield call(api.get, 'tracker', {
+            params: { page: offset },
+        });
 
         yield put(orderRequestSuccess(response.data));
         toast.success('Pedidos carregados com sucesso!');

@@ -6,6 +6,7 @@ import { FiPlusSquare } from 'react-icons/fi';
 import { Content, ProductsContainer, ButtonContainer } from './styles';
 
 import CardProduct from '~/components/CardProduct';
+// import Pagination from '~/components/Pagination';
 import ModalEditProduct from '~/components/ModalEditProduct';
 import ModalAddProduct from '~/components/ModalAddProduct';
 
@@ -68,6 +69,12 @@ function Product() {
                             />
                         ))}
                 </ProductsContainer>
+                {/* <Pagination
+                    limit={5}
+                    total={count}
+                    offset={offset}
+                    setOffset={setOffset}
+                /> */}
             </Content>
         </>
     );
