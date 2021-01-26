@@ -7,10 +7,10 @@ import { orderRequestSuccess, orderRequestFailure } from './actions';
 
 export function* requestOrders({ payload }) {
     try {
-        const { offset } = payload;
+        const { page } = payload;
 
         const response = yield call(api.get, 'tracker', {
-            params: { page: offset },
+            params: { page },
         });
 
         yield put(orderRequestSuccess(response.data));

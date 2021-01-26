@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    margin: 35px;
+    padding: 35px;
 
     button {
         background: none;

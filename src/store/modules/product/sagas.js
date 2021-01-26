@@ -14,9 +14,13 @@ import {
 
 import { toggleModalEdit } from '../modal/actions';
 
-export function* requestProducts() {
+export function* requestProducts({ payload }) {
     try {
-        const response = yield call(api.get, 'products');
+        const { page } = payload;
+
+        const response = yield call(api.get, 'products', {
+            params: { page },
+        });
 
         yield put(productSuccess(response.data));
     } catch (err) {

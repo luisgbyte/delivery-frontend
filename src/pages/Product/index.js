@@ -6,7 +6,7 @@ import { FiPlusSquare } from 'react-icons/fi';
 import { Content, ProductsContainer, ButtonContainer } from './styles';
 
 import CardProduct from '~/components/CardProduct';
-// import Pagination from '~/components/Pagination';
+import Pagination from '~/components/Pagination';
 import ModalEditProduct from '~/components/ModalEditProduct';
 import ModalAddProduct from '~/components/ModalAddProduct';
 
@@ -15,17 +15,18 @@ import { toggleModalEdit, toggleModalAdd } from '~/store/modules/modal/actions';
 
 function Product() {
     const [editingProduct, setEditingProduct] = useState({});
+    const [page, setPage] = useState(1);
 
     const dispatch = useDispatch();
 
-    const { products } = useSelector((state) => state.product);
+    const { products, count } = useSelector((state) => state.product);
     const { editModalOpen, addModalOpen } = useSelector((state) => state.modal);
 
     useEffect(() => {
-        if (!products) {
-            dispatch(productRequest());
-        }
-    }, []);
+        // if (!products) {
+        dispatch(productRequest(page));
+        // }
+    }, [page]);
 
     function handleEdit(product) {
         dispatch(toggleModalEdit());
@@ -69,12 +70,12 @@ function Product() {
                             />
                         ))}
                 </ProductsContainer>
-                {/* <Pagination
-                    limit={5}
+                <Pagination
+                    limit={6}
                     total={count}
-                    offset={offset}
-                    setOffset={setOffset}
-                /> */}
+                    page={page}
+                    setPage={setPage}
+                />
             </Content>
         </>
     );

@@ -1,14 +1,14 @@
-export function orderRequest(offset) {
+export function orderRequest(page) {
     return {
         type: '@order/ORDER_REQUEST',
-        payload: { offset },
+        payload: { page },
     };
 }
 
-export function orderRequestSuccess(orders, count) {
+export function orderRequestSuccess(orders) {
     return {
         type: '@order/ORDER_REQUEST_SUCCESS',
-        payload: { orders, count },
+        payload: { orders },
     };
 }
 
