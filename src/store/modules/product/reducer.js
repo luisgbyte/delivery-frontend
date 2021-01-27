@@ -8,6 +8,11 @@ const INITIAL_STATE = {
 
 export default function products(state = INITIAL_STATE, action) {
     switch (action.type) {
+        // case '@product/PRODUCT_REQUEST': // Request
+        //     return produce(state, (draft) => {
+        //         draft.loading = true;
+        //     });
+
         case '@product/PRODUCT_SUCCESS': // Request
             return produce(state, (draft) => {
                 const { rows, count } = action.payload.products;

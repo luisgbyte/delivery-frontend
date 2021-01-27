@@ -7,12 +7,19 @@ import Header from '~/components/Header';
 import { Wrapper } from './styles';
 
 function DefaultLayout({ children }) {
-    const { loading } = useSelector((state) => state.product);
+    const loadingProduct = useSelector((state) => state.product.loading);
+    const loadingCategory = useSelector((state) => state.category.loading);
+    const loadingOrder = useSelector((state) => state.order.loading);
+
     return (
         <>
             <Wrapper>
                 <Header />
-                {loading ? <Loading /> : children}
+                {loadingCategory || loadingProduct || loadingOrder ? (
+                    <Loading />
+                ) : (
+                    children
+                )}
             </Wrapper>
         </>
     );

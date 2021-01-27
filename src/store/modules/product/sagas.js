@@ -106,7 +106,7 @@ export function* stockedProduct({ payload }) {
         const response = yield call(api.put, `products/${id}/stock`);
 
         yield put(productStockedSuccess(response.data));
-        toast.success('Ação concluída com sucesso!');
+        toast.info('Status do produto alterado com sucesso!');
     } catch (err) {
         toast.error('Ocorreu um error ao realizar a ação!');
     }

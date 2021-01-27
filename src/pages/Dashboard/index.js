@@ -15,12 +15,13 @@ import {
     NoOrders,
     OrderDetails,
     AdressBox,
+    OrderStatusBox,
     RemoveOrder,
 } from './styles';
 
 import Pagination from '~/components/Pagination';
 
-import { orderRequest } from '~/store/modules/order/actions';
+import { orderRequest, orderStatusChange } from '~/store/modules/order/actions';
 
 function Dashboard() {
     const dispatch = useDispatch();
@@ -37,6 +38,10 @@ function Dashboard() {
     // dispatch(orderRequest());
     // }, 180000);
 
+    function ChangeOrderStatus(id, status) {
+        dispatch(orderStatusChange(id, status));
+    }
+
     return (
         <Container>
             {orders?.length === 0 ? (
@@ -49,7 +54,15 @@ function Dashboard() {
                         orders.map((order) => (
                             <OrderBox key={order.id}>
                                 <RemoveOrder>
-                                    <button type="button" onClick={() => {}}>
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            ChangeOrderStatus(
+                                                order.id,
+                                                'Cancelado'
+                                            )
+                                        }
+                                    >
                                         <FiX />
                                     </button>
                                 </RemoveOrder>
@@ -96,7 +109,6 @@ function Dashboard() {
                                                         currency: 'BRL',
                                                     }
                                                 )}{' '}
-                                                reais
                                             </p>
                                         )}
                                         {order.payment.card_type && (
@@ -111,6 +123,65 @@ function Dashboard() {
                                             </p>
                                         )}
                                     </AdressBox>
+                                    <OrderStatusBox>
+                                        <label
+                                            htmlFor={`confirmed-status-${order.id}`}
+                                        >
+                                            <input
+                                                type="radio"
+                                                id={`confirmed-status-${order.id}`}
+                                                onChange={() =>
+                                                    ChangeOrderStatus(
+                                                        order.id,
+                                                        'Confirmado'
+                                                    )
+                                                }
+                                                checked={
+                                                    order.status ===
+                                                    'Confirmado'
+                                                }
+                                            />
+                                            Confirmar
+                                        </label>
+
+                                        <label
+                                            htmlFor={`ready-status-${order.id}`}
+                                        >
+                                            <input
+                                                type="radio"
+                                                id={`ready-status-${order.id}`}
+                                                onChange={() =>
+                                                    ChangeOrderStatus(
+                                                        order.id,
+                                                        'Pronto'
+                                                    )
+                                                }
+                                                checked={
+                                                    order.status === 'Pronto'
+                                                }
+                                            />
+                                            Pronto
+                                        </label>
+
+                                        <label
+                                            htmlFor={`delivered-status-${order.id}`}
+                                        >
+                                            <input
+                                                type="radio"
+                                                id={`delivered-status-${order.id}`}
+                                                onChange={() =>
+                                                    ChangeOrderStatus(
+                                                        order.id,
+                                                        'Entregue'
+                                                    )
+                                                }
+                                                checked={
+                                                    order.status === 'Entregue'
+                                                }
+                                            />
+                                            Entregue
+                                        </label>
+                                    </OrderStatusBox>
                                 </HeaderBox>
                                 <OrderItems>
                                     {order.product.map((item) => (

@@ -142,3 +142,23 @@ export const NoOrders = styled.div`
     right: 0;
     margin: auto;
 `;
+
+export const OrderStatusBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #d3d3d3;
+
+    width: 170px;
+    padding-left: 10px;
+    font-weight: bold;
+
+    label {
+        font-size: 13px;
+        color: #96949e;
+        margin: 2px 0;
+    }
+
+    input {
+        margin-right: 5px;
+    }
+`;
