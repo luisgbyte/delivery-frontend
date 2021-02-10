@@ -9,7 +9,7 @@ function Pagination({ limit, total, page, setPage }) {
     function onPageChange(item) {
         setPage(item);
     }
-    console.log(page);
+
     return (
         <Container>
             <ul>
