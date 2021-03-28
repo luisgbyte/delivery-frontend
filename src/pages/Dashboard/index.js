@@ -32,11 +32,11 @@ function Dashboard() {
 
     useEffect(() => {
         dispatch(orderRequest(page));
+        const interval = setInterval(() => {
+            dispatch(orderRequest(page));
+        }, 30000);
+        return () => clearInterval(interval);
     }, [page]);
-
-    // setInterval(() => {
-    // dispatch(orderRequest());
-    // }, 180000);
 
     function ChangeOrderStatus(id, status) {
         dispatch(orderStatusChange(id, status));
@@ -91,7 +91,7 @@ function Dashboard() {
                                             Número:{' '}
                                             {order.client.address.number}
                                         </p>
-                                        <p>CEP: {order.client.address.cep}</p>
+                                        {/* <p>CEP: {order.client.address.cep}</p> */}
                                         <p>
                                             Bairro:{' '}
                                             {order.client.address.neighborhood}
@@ -111,17 +111,17 @@ function Dashboard() {
                                                 )}{' '}
                                             </p>
                                         )}
-                                        {order.payment.card_type && (
+                                        {/* {order.payment.card_type && (
                                             <p>
                                                 Tipo: {order.payment.card_type}
                                             </p>
-                                        )}
-                                        {order.payment.card_banner && (
+                                        )} */}
+                                        {/* {order.payment.card_banner && (
                                             <p>
                                                 Bandeira:{' '}
                                                 {order.payment.card_banner}
                                             </p>
-                                        )}
+                                        )} */}
                                     </AdressBox>
                                     <OrderStatusBox>
                                         <label

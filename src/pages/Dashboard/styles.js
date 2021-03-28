@@ -14,6 +14,7 @@ export const OrderBox = styled.div`
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
+
 export const RemoveOrder = styled.div`
     display: flex;
     justify-content: flex-end;
