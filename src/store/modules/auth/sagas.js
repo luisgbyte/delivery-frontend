@@ -16,6 +16,11 @@ export function* signIn({ payload }) {
         });
 
         const { token, user } = response.data;
+
+        if (user.whoami !== 'admin') {
+            throw new Error('oops, you are not admin');
+        }
+
         yield put(signInSuccess(token, user));
 
         api.defaults.headers.Authorization = `Bearer ${token}`;
