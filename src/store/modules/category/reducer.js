@@ -34,6 +34,11 @@ export default function category(state = INITIAL_STATE, action) {
                 draft.loading = false;
             });
 
+        case '@category/CATEGORY_EDIT_FAILURE':
+            return produce(state, (draft) => {
+                draft.loading = false;
+            });
+
         case '@category/CATEGORY_CREATE':
             return produce(state, (draft) => {
                 draft.loading = true;
@@ -42,7 +47,11 @@ export default function category(state = INITIAL_STATE, action) {
         case '@category/CATEGORY_CREATE_SUCCESS':
             return produce(state, (draft) => {
                 draft.categories.push(action.payload.category);
+                draft.loading = false;
+            });
 
+        case '@category/CATEGORY_CREATE_FAILURE':
+            return produce(state, (draft) => {
                 draft.loading = false;
             });
 
@@ -61,6 +70,7 @@ export default function category(state = INITIAL_STATE, action) {
 
                 draft.loading = false;
             });
+
         default:
             return state;
     }
