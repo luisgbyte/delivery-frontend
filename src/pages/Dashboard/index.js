@@ -91,7 +91,6 @@ function Dashboard() {
                                             Número:{' '}
                                             {order.client.address.number}
                                         </p>
-                                        {/* <p>CEP: {order.client.address.cep}</p> */}
                                         <p>
                                             Bairro:{' '}
                                             {order.client.address.neighborhood}
@@ -111,76 +110,75 @@ function Dashboard() {
                                                 )}{' '}
                                             </p>
                                         )}
-                                        {/* {order.payment.card_type && (
-                                            <p>
-                                                Tipo: {order.payment.card_type}
-                                            </p>
-                                        )} */}
-                                        {/* {order.payment.card_banner && (
-                                            <p>
-                                                Bandeira:{' '}
-                                                {order.payment.card_banner}
-                                            </p>
-                                        )} */}
                                     </AdressBox>
                                     <OrderStatusBox>
-                                        <label
-                                            htmlFor={`confirmed-status-${order.id}`}
-                                        >
-                                            <input
-                                                type="radio"
-                                                id={`confirmed-status-${order.id}`}
-                                                onChange={() =>
-                                                    ChangeOrderStatus(
-                                                        order.id,
-                                                        'Confirmado'
-                                                    )
-                                                }
-                                                checked={
-                                                    order.status ===
-                                                    'Confirmado'
-                                                }
-                                            />
-                                            Confirmar
-                                        </label>
+                                        {order.status === 'Cancelado' ? (
+                                            <p style={{ color: '#c72828' }}>
+                                                Cancelado
+                                            </p>
+                                        ) : (
+                                            <>
+                                                <label
+                                                    htmlFor={`confirmed-status-${order.id}`}
+                                                >
+                                                    <input
+                                                        type="radio"
+                                                        id={`confirmed-status-${order.id}`}
+                                                        onChange={() =>
+                                                            ChangeOrderStatus(
+                                                                order.id,
+                                                                'Confirmado'
+                                                            )
+                                                        }
+                                                        checked={
+                                                            order.status ===
+                                                            'Confirmado'
+                                                        }
+                                                    />
+                                                    Confirmar
+                                                </label>
 
-                                        <label
-                                            htmlFor={`ready-status-${order.id}`}
-                                        >
-                                            <input
-                                                type="radio"
-                                                id={`ready-status-${order.id}`}
-                                                onChange={() =>
-                                                    ChangeOrderStatus(
-                                                        order.id,
-                                                        'Pronto'
-                                                    )
-                                                }
-                                                checked={
-                                                    order.status === 'Pronto'
-                                                }
-                                            />
-                                            Pronto
-                                        </label>
+                                                <label
+                                                    htmlFor={`ready-status-${order.id}`}
+                                                >
+                                                    <input
+                                                        type="radio"
+                                                        id={`ready-status-${order.id}`}
+                                                        onChange={() =>
+                                                            ChangeOrderStatus(
+                                                                order.id,
+                                                                'Pronto'
+                                                            )
+                                                        }
+                                                        checked={
+                                                            order.status ===
+                                                            'Pronto'
+                                                        }
+                                                    />
+                                                    Pronto
+                                                </label>
 
-                                        <label
-                                            htmlFor={`delivered-status-${order.id}`}
-                                        >
-                                            <input
-                                                type="radio"
-                                                id={`delivered-status-${order.id}`}
-                                                onChange={() =>
-                                                    ChangeOrderStatus(
-                                                        order.id,
-                                                        'Entregue'
-                                                    )
-                                                }
-                                                checked={
-                                                    order.status === 'Entregue'
-                                                }
-                                            />
-                                            Entregue
-                                        </label>
+                                                <label
+                                                    htmlFor={`delivered-status-${order.id}`}
+                                                >
+                                                    <input
+                                                        type="radio"
+                                                        id={`delivered-status-${order.id}`}
+                                                        onChange={() =>
+                                                            ChangeOrderStatus(
+                                                                order.id,
+                                                                'Entregue'
+                                                            )
+                                                        }
+                                                        checked={
+                                                            order.status ===
+                                                            'Entregue'
+                                                        }
+                                                    />
+                                                    Entregue
+                                                </label>
+                                            </>
+                                        )}
                                     </OrderStatusBox>
                                 </HeaderBox>
                                 <OrderItems>

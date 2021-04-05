@@ -29,11 +29,11 @@ export default function order(state = INITIAL_STATE, action) {
 
                 const index = draft.orders.findIndex((item) => item.id === id);
 
-                if (status === 'Cancelado') {
-                    draft.orders.splice(index, 1);
-                } else {
-                    draft.orders[index].status = status;
-                }
+                // if (status === 'Cancelado') {
+                // draft.orders.splice(index, 1);
+                // } else {
+                draft.orders[index].status = status;
+                // }
             });
 
         default:
