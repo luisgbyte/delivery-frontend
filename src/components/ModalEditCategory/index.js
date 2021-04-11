@@ -26,12 +26,12 @@ function ModalEditCategory({ isOpen, editingProduct }) {
                 }}
             >
                 <Form onSubmit={handleSubmit} initialData={editingProduct}>
-                    <h1>Editar Categoria</h1>
+                    <h1 style={{ fontSize: '1.8rem' }}>Editar Categoria</h1>
                     <Input name="name" placeholder="Ex: Pizzas" />
                     <button type="submit">
                         <p className="text">Editar Categoria</p>
                         <div className="icon">
-                            <FiCheckSquare size={24} />
+                            <FiCheckSquare size="2rem" />
                         </div>
                     </button>
                 </Form>

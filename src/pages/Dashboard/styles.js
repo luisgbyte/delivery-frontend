@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    width: 100%;
+    width: 90%;
     max-width: 900px;
     margin: 0 auto;
 `;
@@ -19,11 +19,10 @@ export const RemoveOrder = styled.div`
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    /* padding: 5px; */
     button {
         border: none;
         background: none;
-        font-size: 18px;
+        font-size: 1.8rem;
         color: #0b2031;
     }
 `;
@@ -33,6 +32,10 @@ export const HeaderBox = styled.div`
     flex-direction: row;
     justify-content: space-between;
     padding-bottom: 10px;
+
+    @media (max-width: 530px) {
+        flex-direction: column;
+    }
 `;
 
 export const OrderDetails = styled.div`
@@ -42,11 +45,11 @@ export const OrderDetails = styled.div`
     }
     p {
         font-weight: bold;
-        font-size: 15px;
+        font-size: 1.5rem;
     }
     p:nth-child(2n) {
         color: #96949e;
-        font-size: 14px;
+        font-size: 1.4rem;
         margin: 5px 0;
     }
 `;
@@ -59,7 +62,7 @@ export const AdressBox = styled.div`
     padding-left: 10px;
     font-weight: bold;
     p {
-        font-size: 13px;
+        font-size: 1.3rem;
         color: #96949e;
         margin: 5px 0;
     }
@@ -78,6 +81,10 @@ export const OrdersContainer = styled.div`
     margin: auto;
     margin-top: 30px;
     justify-content: space-between;
+
+    @media (max-width: 790px) {
+        width: 100%;
+    }
 `;
 
 export const OrderItems = styled.div`
@@ -91,8 +98,8 @@ export const OrderItems = styled.div`
 export const Item = styled.div`
     display: inline-block;
     align-items: center;
-    width: 290px;
-    height: 100px;
+    /* width: 290px;
+    height: 100px; */
     border-radius: 15px;
     padding: 20px;
     margin: 10px;
@@ -106,17 +113,17 @@ export const Item = styled.div`
             margin-left: 10px;
         }
         img {
-            height: 70px;
-            width: 70px;
+            height: 7rem;
+            width: 7rem;
             border-radius: 50%;
         }
         p {
-            font-size: 15px;
+            font-size: 1.5rem;
             font-weight: 200;
         }
         p:not(.first) {
             color: #96949e;
-            font-size: 14px;
+            font-size: 1.4rem;
             margin: 2px 0;
             /* font-weight: bold; */
         }
@@ -128,13 +135,13 @@ export const OrderFooter = styled.div`
     padding-top: 20px;
     color: #96949e;
     p {
-        font-size: 15px;
+        font-size: 1.5rem;
     }
 `;
 
 export const NoOrders = styled.div`
-    width: 500px;
-    height: 50px;
+    width: 90%;
+    height: 50%;
     color: #fff;
     position: absolute;
     top: 0;
@@ -142,6 +149,9 @@ export const NoOrders = styled.div`
     left: 0;
     right: 0;
     margin: auto;
+    h1 {
+        text-align: center;
+    }
 `;
 
 export const OrderStatusBox = styled.div`
@@ -154,7 +164,7 @@ export const OrderStatusBox = styled.div`
     font-weight: bold;
 
     label {
-        font-size: 13px;
+        font-size: 1.3rem;
         color: #96949e;
         margin: 2px 0;
     }

@@ -8,8 +8,8 @@ export const Form = styled(Unform)`
 
     h1 {
         font-weight: 600;
-        font-size: 36px;
-        line-height: 36px;
+        font-size: 3.6rem;
+        line-height: 3.6rem;
         margin-bottom: 40px;
     }
 
@@ -30,12 +30,13 @@ export const Form = styled(Unform)`
         align-items: center;
 
         .text {
-            padding: 16px 24px;
+            font-size: 1.2rem;
+            padding: 1.6rem 2.4rem;
         }
 
         .icon {
             display: flex;
-            padding: 16px 16px;
+            padding: 1.6rem 1.6rem;
             background: #41c900;
             border-radius: 0 8px 8px 0;
             margin: 0 auto;

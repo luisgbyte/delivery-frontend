@@ -7,7 +7,6 @@ export const Container = styled.div`
     background: #fff;
     border-radius: 8px;
     padding: 16px 24px;
-    width: 100%;
 
     & + div {
         margin-top: 24px;
@@ -16,8 +15,8 @@ export const Container = styled.div`
     h1 {
         margin-bottom: 40px;
         font-weight: 600;
-        font-size: 36px;
-        line-height: 36px;
+        font-size: 3.6rem;
+        line-height: 3.6rem;
     }
 
     ${(props) =>
@@ -37,7 +36,7 @@ export const Container = styled.div`
         background: transparent;
         border: 0;
         color: #b7b7cc;
-        font-size: 16px;
+        font-size: 1.6rem;
         &::placeholder {
             color: #b7b7cc;
         }

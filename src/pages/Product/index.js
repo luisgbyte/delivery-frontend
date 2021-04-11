@@ -53,9 +53,11 @@ function Product() {
                             dispatch(toggleModalAdd());
                         }}
                     >
-                        <div className="text">Novo Produto</div>
+                        <div className="text" style={{ fontSize: '1.3rem' }}>
+                            Novo Produto
+                        </div>
                         <div className="icon">
-                            <FiPlusSquare size={24} />
+                            <FiPlusSquare size="2.4rem" />
                         </div>
                     </button>
                 </ButtonContainer>

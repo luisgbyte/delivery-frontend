@@ -104,9 +104,11 @@ function ModalAddProduct({ isOpen }) {
                     />
                     <ImageInput name="file" />
                     <button type="submit">
-                        <p className="text">Adicionar Produto</p>
+                        <p className="text" style={{ fontSize: '1.2rem' }}>
+                            Adicionar Produto
+                        </p>
                         <div className="icon">
-                            <FiCheckSquare size={24} />
+                            <FiCheckSquare size="1.6rem" />
                         </div>
                     </button>
                 </Form>

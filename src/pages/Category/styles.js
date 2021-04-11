@@ -9,6 +9,10 @@ export const Content = styled.div`
 
     margin-top: 50px;
     border-radius: 10px;
+
+    @media (max-width: 790px) {
+        width: 90%;
+    }
 `;
 
 export const HeadContainer = styled.div`
@@ -66,7 +70,7 @@ export const CategoryContainer = styled.div`
 
     td {
         padding: 3% 7%;
-        font-size: 15px;
+        font-size: 1.5rem;
         min-width: 70%;
 
         div {

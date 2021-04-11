@@ -8,9 +8,9 @@ export const Form = styled(Unform)`
 
     h1 {
         font-weight: 600;
-        font-size: 36px;
-        line-height: 36px;
-        margin-bottom: 40px;
+        font-size: 3.6rem;
+        line-height: 3.6rem;
+        margin-bottom: 4rem;
     }
 
     button {
@@ -30,7 +30,8 @@ export const Form = styled(Unform)`
         align-items: center;
 
         .text {
-            padding: 16px 24px;
+            font-size: 1.2rem;
+            padding: 1.6rem 2.4rem;
         }
 
         .icon {

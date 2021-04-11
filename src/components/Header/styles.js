@@ -7,6 +7,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
     height: 64px;
+    width: 90%;
     max-width: 900px;
     margin: 0 auto;
     display: flex;
@@ -24,6 +25,7 @@ export const Content = styled.div`
 
         a {
             font-weight: bold;
+            font-size: 1.6rem;
             margin-right: 20px;
             color: #c72828;
         }
@@ -31,6 +33,14 @@ export const Content = styled.div`
     aside {
         display: flex;
         align-items: center;
+    }
+
+    @media (max-width: 530px) {
+        nav {
+            img {
+                display: none;
+            }
+        }
     }
 `;
 
@@ -49,12 +59,21 @@ export const Profile = styled.div`
         a {
             display: block;
             margin-top: 2px;
-            font-size: 12px;
+            font-size: 1.2rem;
             color: #999;
         }
     }
     img {
         height: 32px;
         border-radius: 50%;
+    }
+
+    @media (max-width: 410px) {
+        div {
+            a,
+            strong {
+                display: none;
+            }
+        }
     }
 `;

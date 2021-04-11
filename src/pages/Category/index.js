@@ -48,16 +48,17 @@ function Category() {
             />
             <Content>
                 <HeadContainer>
-                    {/* <h3></h3> */}
                     <button
                         type="button"
                         onClick={() => {
                             dispatch(toggleModalAdd());
                         }}
                     >
-                        <div className="text">Nova Categoria</div>
+                        <div className="text" style={{ fontSize: '1.3rem' }}>
+                            Nova Categoria
+                        </div>
                         <div className="icon">
-                            <FiPlusSquare size={24} />
+                            <FiPlusSquare size="2.4rem" />
                         </div>
                     </button>
                 </HeadContainer>
@@ -86,11 +87,11 @@ function Category() {
                                                             );
                                                         }}
                                                     >
-                                                        <FiEdit size={18} />
+                                                        <FiEdit size="1.8rem" />
                                                     </button>
                                                     <button type="button">
                                                         <FiTrash2
-                                                            size={18}
+                                                            size="1.8rem"
                                                             onClick={() => {
                                                                 dispatch(
                                                                     categoryDelete(

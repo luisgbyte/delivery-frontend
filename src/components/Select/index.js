@@ -38,19 +38,19 @@ const Select = ({ name, ...rest }) => {
             ...provided,
             color: '#b7b7cc',
             fontFamily: 'Ubuntu',
-            fontSize: '16px',
+            fontSize: '1.6rem',
             padding: '15px',
         }),
         placeholder: () => ({
             color: '#b7b7cc',
             fontFamily: 'Ubuntu',
-            fontSize: '16px',
+            fontSize: '1.6rem',
             paddingLeft: '15px',
         }),
         singleValue: () => ({
             color: '#b7b7cc',
             fontFamily: 'Ubuntu',
-            fontSize: '16px',
+            fontSize: '1.6rem',
             paddingLeft: '15px',
         }),
     };
@@ -69,7 +69,7 @@ const Select = ({ name, ...rest }) => {
                 <p
                     style={{
                         color: '#F1040C',
-                        fontSize: '15px',
+                        fontSize: '1.5rem',
                         fontFamily: 'Roboto',
                         padding: '5px',
                     }}

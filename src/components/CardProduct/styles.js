@@ -26,22 +26,22 @@ export const Container = styled.div`
 
     section.body {
         padding: 10px;
-        font-size: 15px;
+        font-size: 1.5rem;
         h2 {
             color: #3d3d4d;
-            font-size: 15px;
+            font-size: 1.5rem;
         }
 
         p {
             color: #3d3d4d;
-            font-size: 15px;
+            font-size: 1.5rem;
             margin-top: 5px;
         }
 
         .price {
             font-style: normal;
-            font-size: 17px;
-            line-height: 17px;
+            font-size: 1.7rem;
+            line-height: 1.7rem;
             color: #39b100;
 
             b {
@@ -87,15 +87,15 @@ export const Container = styled.div`
 
             p {
                 color: #3d3d4d;
-                font-size: 12px;
+                font-size: 1.2rem;
             }
 
             .switch {
                 position: relative;
                 display: inline-block;
-                width: 88px;
-                height: 32px;
-                margin-left: 12px;
+                width: 8.8rem;
+                height: 3.2rem;
+                margin-left: 1.2rem;
 
                 & input {
                     opacity: 0;

@@ -26,12 +26,12 @@ function ModalAddCategory({ isOpen }) {
                 }}
             >
                 <Form onSubmit={handleSubmit}>
-                    <h1>Nova Categoria</h1>
+                    <h1 style={{ fontSize: '1.8rem' }}>Nova Categoria</h1>
                     <Input name="name" placeholder="Ex: Pizzas" />
                     <button type="submit">
                         <p className="text">Adicionar Categoria</p>
                         <div className="icon">
-                            <FiCheckSquare size={24} />
+                            <FiCheckSquare size="2rem" />
                         </div>
                     </button>
                 </Form>

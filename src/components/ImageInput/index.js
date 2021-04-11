@@ -39,7 +39,7 @@ const ImageInput = ({ name, ...rest }) => {
                 <p
                     style={{
                         color: '#F1040C',
-                        fontSize: '15px',
+                        fontSize: '1.5rem',
                         fontFamily: 'Roboto',
                         padding: '5px',
                     }}

@@ -29,6 +29,15 @@ export default createGlobalStyle`
         font: 14px, 'Roboto', sans-serif;
     }
 
+    html {
+        /* a cada 1rem será considerado 10px*/
+        font-size: 62.5%;
+    }
+
+    body {
+        font-size: 1.6rem;
+    }
+
     a {
         text-decoration: none;
     }
@@ -39,5 +48,24 @@ export default createGlobalStyle`
 
     button {
         cursor: pointer;
+    }
+
+    //
+    @media(max-width: 768px) {
+        html{
+            font-size: 50%;
+        }
+        /* body {
+            overflow: hidden;
+        } */
+    }
+
+    @media(max-width: 530px) {
+        html{
+            font-size: 50%;
+        }
+        /* body {
+            overflow: hidden;
+        } */
     }
 `;

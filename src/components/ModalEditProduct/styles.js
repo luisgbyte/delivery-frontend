@@ -8,8 +8,8 @@ export const Form = styled(Unform)`
 
     h1 {
         font-weight: 600;
-        font-size: 36px;
-        line-height: 36px;
+        font-size: 3.6rem;
+        line-height: 3.6rem;
         margin-bottom: 40px;
     }
 
@@ -20,6 +20,7 @@ export const Form = styled(Unform)`
 
     button {
         font-weight: 600;
+        font-size: 1.2rem;
         border-radius: 8px;
         border: 0;
         background: #39b100;

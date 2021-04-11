@@ -42,7 +42,7 @@ function CardProduct({ product, handleDelete, handleEdit }) {
                         className="icon"
                         onClick={() => handleEdit(product)}
                     >
-                        <FiEdit3 size={20} />
+                        <FiEdit3 size="2rem" />
                     </button>
 
                     <button
@@ -50,7 +50,7 @@ function CardProduct({ product, handleDelete, handleEdit }) {
                         className="icon"
                         onClick={() => handleDelete(product.id)}
                     >
-                        <FiTrash size={20} />
+                        <FiTrash size="2rem" />
                     </button>
                 </div>
 

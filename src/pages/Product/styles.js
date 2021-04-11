@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Content = styled.div`
-    width: 100%;
+    width: 90%;
     max-width: 900px;
     margin: 0 auto;
 `;
@@ -42,6 +42,11 @@ export const ProductsContainer = styled.div`
 
     display: grid;
 
+    /* grid-template-columns: repeat(auto-fit, minmax(225px, 1fr)); */
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 32px;
+
+    @media (max-width: 890px) {
+        grid-template-columns: repeat(auto-fit, minmax(225px, 2fr));
+    }
 `;

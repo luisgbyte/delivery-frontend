@@ -29,7 +29,7 @@ export const Container = styled.div`
             align-self: flex-start;
             margin: 0 0 10px;
             font-weight: bold;
-            font-size: 13px;
+            font-size: 1.3rem;
         }
 
         hr {
@@ -47,7 +47,7 @@ export const Container = styled.div`
             color: #fff;
             border: 0;
             border-radius: 4px;
-            font-size: 16px;
+            font-size: 1.6rem;
             transition: background 0.2s;
 
             &:hover {
@@ -65,11 +65,15 @@ export const Container = styled.div`
         color: #fff;
         border: 0;
         border-radius: 4px;
-        font-size: 16px;
+        font-size: 1.6rem;
         transition: background 0.2s;
 
         &:hover {
             background: ${darken(0.09, '#fb8b24')};
         }
+    }
+
+    @media (max-width: 770px) {
+        width: 90%;
     }
 `;

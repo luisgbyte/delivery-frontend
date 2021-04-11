@@ -39,7 +39,7 @@ export const Content = styled.div`
             align-self: flex-start;
             margin: 0 0 10px;
             font-weight: bold;
-            font-size: 13px;
+            font-size: 1.3rem;
         }
 
         button {
@@ -50,7 +50,7 @@ export const Content = styled.div`
             color: #fff;
             border: 0;
             border-radius: 4px;
-            font-size: 16px;
+            font-size: 1.6rem;
             transition: background 0.2s;
 
             &:hover {

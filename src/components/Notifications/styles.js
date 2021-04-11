@@ -4,6 +4,9 @@ import { lighten } from 'polished';
 
 export const Container = styled.div`
     position: relative;
+    @media (max-width: 530px) {
+        display: none;
+    }
 `;
 
 export const Badge = styled.button`
@@ -64,19 +67,19 @@ export const Notification = styled.div`
     }
 
     p {
-        font-size: 13px;
-        line-height: 18px;
+        font-size: 1.3rem;
+        line-height: 1.8rem;
     }
 
     time {
         display: block;
-        font-size: 12px;
+        font-size: 1.2rem;
         opacity: 0.6;
         margin-bottom: 5px;
     }
 
     button {
-        font-size: 12px;
+        font-size: 1.2rem;
         border: 0;
         background: none;
         color: ${lighten(0.2, '#7159c1')};

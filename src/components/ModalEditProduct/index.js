@@ -96,7 +96,7 @@ function ModalEditProduct({ isOpen, editingProduct }) {
                 onSubmit={handleSubmit}
                 initialData={editingProduct}
             >
-                <h1>Editar Prato</h1>
+                <h1 style={{ fontSize: '2rem' }}>Editar Prato</h1>
 
                 <Input name="name" placeholder="Ex: Moda Italiana" />
 
@@ -115,7 +115,7 @@ function ModalEditProduct({ isOpen, editingProduct }) {
                 <button type="submit">
                     <div className="text">Editar Prato</div>
                     <div className="icon">
-                        <FiCheckSquare size={24} />
+                        <FiCheckSquare size="2.4rem" />
                     </div>
                 </button>
             </Form>

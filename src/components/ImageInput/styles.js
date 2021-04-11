@@ -9,5 +9,5 @@ export const Container = styled.div`
     padding: 14px 20px;
     margin-top: 20px;
     width: 100%;
-    font-size: 12px;
+    font-size: 1.2rem;
 `;
