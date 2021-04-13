@@ -4,6 +4,7 @@ export const Content = styled.div`
     width: 90%;
     max-width: 900px;
     margin: 0 auto;
+    min-height: 100vh;
 `;
 
 export const ButtonContainer = styled.div`

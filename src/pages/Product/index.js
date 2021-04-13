@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { FiPlusSquare } from 'react-icons/fi';
+import Swal from 'sweetalert2';
 import { Content, ProductsContainer, ButtonContainer } from './styles';
 
 import CardProduct from '~/components/CardProduct';
@@ -34,7 +35,20 @@ function Product() {
     }
 
     function handleDelete(id) {
-        dispatch(productDelete(id));
+        Swal.fire({
+            title: 'Deseja excluir produto?',
+            text: 'Você não poderá reverter isso!',
+            icon: 'error',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Excluir',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(productDelete(id));
+            }
+        });
     }
 
     return (

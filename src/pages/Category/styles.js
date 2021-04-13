@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
 export const Content = styled.div`
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    min-height: 100vh;
+`;
+
+export const Card = styled.div`
     width: 700px;
     min-height: 400px;
     margin: 0 auto;

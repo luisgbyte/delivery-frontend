@@ -38,8 +38,9 @@ export function* categoriesCreate({ payload }) {
 
         toast.success('Categoria criada com sucesso!');
     } catch (err) {
+        const { error } = err.response.data;
+        toast.error(error);
         yield put(categoryCreateFailure());
-        toast.error('Erro ao criar categoria!');
     }
 }
 
@@ -51,8 +52,9 @@ export function* categoriesDelete({ payload }) {
         yield put(categoryDeleteSuccess(id));
         toast.success('Categoria deletada com sucesso!');
     } catch (err) {
+        const { error } = err.response.data;
+        toast.error(error);
         yield put(categoryDeleteFailure());
-        toast.error('Error ao deletar categoria!');
     }
 }
 
@@ -65,8 +67,9 @@ export function* categoriesEdit({ payload }) {
         yield put(toggleModalEdit());
         toast.success('Categoria editada com sucesso!');
     } catch (err) {
+        const { error } = err.response.data;
+        toast.error(error);
         yield put(categoryEditFailure());
-        toast.error('Erro ao editar categoria!');
     }
 }
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FiX } from 'react-icons/fi';
 
 import { useDispatch, useSelector } from 'react-redux';
-
+import Swal from 'sweetalert2';
 import {
     Container,
     OrdersContainer,
@@ -39,7 +39,20 @@ function Dashboard() {
     }, [page]);
 
     function ChangeOrderStatus(id, status) {
-        dispatch(orderStatusChange(id, status));
+        Swal.fire({
+            title: 'Alterar Status do pedido?',
+            text: 'Você não poderá reverter isso!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Alterar',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(orderStatusChange(id, status));
+            }
+        });
     }
 
     return (
@@ -181,42 +194,49 @@ function Dashboard() {
                                         )}
                                     </OrderStatusBox>
                                 </HeaderBox>
-                                <OrderItems>
-                                    {order.product.map((item) => (
-                                        <Item key={item.id}>
-                                            <div>
-                                                <img
-                                                    src={item.file?.url}
-                                                    alt="produto"
-                                                />
+                                {!(
+                                    order.status === 'Entregue' ||
+                                    order.status === 'Cancelado'
+                                ) && (
+                                    <OrderItems>
+                                        {order.product.map((item) => (
+                                            <Item key={item.id}>
                                                 <div>
-                                                    <p className="first">
-                                                        {item.name}
-                                                    </p>
-                                                    <p>
-                                                        Preço:{' '}
-                                                        {item.price.toLocaleString(
-                                                            'pt-BR',
+                                                    <img
+                                                        src={item.file?.url}
+                                                        alt="produto"
+                                                    />
+                                                    <div>
+                                                        <p className="first">
+                                                            {item.name}
+                                                        </p>
+                                                        <p>
+                                                            Preço:{' '}
+                                                            {item.price.toLocaleString(
+                                                                'pt-BR',
+                                                                {
+                                                                    style:
+                                                                        'currency',
+                                                                    currency:
+                                                                        'BRL',
+                                                                }
+                                                            )}{' '}
+                                                        </p>
+                                                        <p>
+                                                            Quantidade:{' '}
                                                             {
-                                                                style:
-                                                                    'currency',
-                                                                currency: 'BRL',
-                                                            }
-                                                        )}{' '}
-                                                    </p>
-                                                    <p>
-                                                        Quantidade:{' '}
-                                                        {
-                                                            item.product_orders
-                                                                .quantity
-                                                        }{' '}
-                                                        un.
-                                                    </p>
+                                                                item
+                                                                    .product_orders
+                                                                    .quantity
+                                                            }{' '}
+                                                            un.
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </Item>
-                                    ))}
-                                </OrderItems>
+                                            </Item>
+                                        ))}
+                                    </OrderItems>
+                                )}
                                 <OrderFooter>
                                     <p>Observações: nenhuma</p>
                                 </OrderFooter>

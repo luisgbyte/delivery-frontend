@@ -8,18 +8,14 @@ import { Wrapper } from './styles';
 
 function DefaultLayout({ children }) {
     const loadingProduct = useSelector((state) => state.product.loading);
-    const loadingCategory = useSelector((state) => state.category.loading);
+    // const loadingCategory = useSelector((state) => state.category.loading);
     const loadingOrder = useSelector((state) => state.order.loading);
 
     return (
         <>
             <Wrapper>
                 <Header />
-                {loadingCategory || loadingProduct || loadingOrder ? (
-                    <Loading />
-                ) : (
-                    children
-                )}
+                {loadingProduct || loadingOrder ? <Loading /> : children}
             </Wrapper>
         </>
     );

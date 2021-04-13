@@ -55,8 +55,9 @@ export function* addProduct({ payload }) {
 
         toast.success('Produto cadastrado com sucesso!');
     } catch (err) {
+        const { error } = err.response.data;
+        toast.error(error);
         yield put(productFailure());
-        toast.error('Ocorreu um error ao adicionar produto!');
     }
 }
 
@@ -82,8 +83,9 @@ export function* editProduct({ payload }) {
 
         toast.success('Produto editado com sucesso!');
     } catch (err) {
+        const { error } = err.response.data;
+        toast.error(error);
         yield put(productFailure());
-        toast.error('Ocorreu um error ao editar produto!');
     }
 }
 
@@ -95,7 +97,8 @@ export function* deleteProduct({ payload }) {
         yield put(productDeleteSuccess(id));
         toast.success('Produto deletado com sucesso!');
     } catch (err) {
-        toast.error('Ocorreu um error ao deletar produto!');
+        const { error } = err.response.data;
+        toast.error(error);
     }
 }
 
