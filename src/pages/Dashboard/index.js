@@ -125,9 +125,10 @@ function Dashboard() {
                                         )}
                                     </AdressBox>
                                     <OrderStatusBox>
-                                        {order.status === 'Cancelado' ? (
+                                        {order.status === 'Cancelado' ||
+                                        order.status === 'Entregue' ? (
                                             <p style={{ color: '#c72828' }}>
-                                                Cancelado
+                                                {order.status}
                                             </p>
                                         ) : (
                                             <>
