@@ -29,9 +29,8 @@ export function* requestOrders({ payload }) {
 export function* changeStatus({ payload }) {
     try {
         const { id, status } = payload;
-        console.tron.log('teste1');
+
         const response = yield call(api.put, `orders/${id}/status`, { status });
-        // console.tron.log('teste', response);
         yield put(orderStatusChangeSuccess(response.data));
 
         toast.info('Status do pedido alterado com sucesso!');
